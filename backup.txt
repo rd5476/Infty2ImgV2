@@ -1,0 +1,189 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDFont;
+import org.apache.pdfbox.pdmodel.font.PDTrueTypeFont;
+import org.apache.pdfbox.pdmodel.font.PDType0Font;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import org.apache.pdfbox.pdmodel.font.PDType3CharProc;
+import org.apache.pdfbox.pdmodel.font.PDType3Font;
+import org.apache.pdfbox.pdmodel.font.encoding.Type1Encoding;
+import org.jsoup.Jsoup;
+import org.omg.IOP.Encoding;
+
+
+public class WriteExpToPdf {
+	
+	static Map<String,String> generic_symbol_table =  new HashMap<>();
+	static Map<String,String> ocr2unicode = new HashMap<>();
+	static Map<String,String> english2digit = new HashMap<>();
+	ArrayList<Expression> allExpressions = null;
+	String destination;
+	public WriteExpToPdf() {}
+	static {
+		init_generic_symbol_table();
+		//init_ocr2unicode();
+		english2digit.put("zero", "0");
+		english2digit.put("one", "1");
+		english2digit.put("two", "2");
+		english2digit.put("three", "3");
+		english2digit.put("four", "4");
+		english2digit.put("five", "5");
+		english2digit.put("six", "6");
+		english2digit.put("seven", "7");
+		english2digit.put("eight", "8");
+		english2digit.put("nine", "9");
+	}
+	public WriteExpToPdf(String dest) {
+		this.destination = dest;
+	}
+	
+	static void init_ocr2unicode(){
+		File gst = new File("src/ocr2uni.csv");
+		FileReader fileReader = null;
+		try {
+			fileReader = new FileReader(gst);
+		
+			BufferedReader br = new BufferedReader(fileReader);
+			
+			String line = null;
+			// if no more lines the readLine() returns null
+			line = br.readLine();
+			while ((line = br.readLine()) != null) {
+				String [] tokens = line.split(",");
+				if(tokens.length>1)
+				generic_symbol_table.put(tokens[0], tokens[1]);
+				
+				
+			}
+		}catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	static void init_generic_symbol_table() {
+		File gst = new File("src/generic_symbol_table.csv");
+		FileReader fileReader = null;
+		try {
+			fileReader = new FileReader(gst);
+		
+			BufferedReader br = new BufferedReader(fileReader);
+			
+			String line = null;
+			// if no more lines the readLine() returns null
+			line = br.readLine();
+			while ((line = br.readLine()) != null) {
+				String [] tokens = line.split(",");
+				generic_symbol_table.put(tokens[3], tokens[1]);
+				
+			}
+		}catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	void createPDFs() {
+		
+		for(Expression exp : allExpressions) {
+			// Create a document and add a page to it
+			exp.objects.sort((o1, o2) -> ((Integer)(o1.lowX)).compareTo(o2.lowX));
+			PDDocument document = new PDDocument();
+			PDPage page = new PDPage();
+			document.addPage( page );
+
+			// Create a new font object selecting one of the PDF base fonts
+			PDFont font;
+			try {
+				font = PDType0Font.load(document, new File("src/ArialUnicodeMS - Arial Unicode MS - Regular.ttf"));
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		
+			PDPageContentStream contentStream = null;
+			try {
+				contentStream = new PDPageContentStream(document, page);
+				// Define a text content stream using the selected font, moving the cursor and drawing the text "Hello World"
+				
+				
+				
+			//	contentStream.moveTo(10, 10);
+				
+				
+				//contentStream.newLineAtOffset(100, 400.5f);
+				
+				//contentStream.showText(exp.expId);
+				float offsetX = 10;
+				float offsetY = 700;
+				float baseX = exp.objects.get(0).lowX;
+				float baseFont = exp.objects.get(0).symHeigh;
+				float factor = 0.1f;//12/baseFont;
+				
+				for(Symbol sym : exp.objects) {
+					contentStream.beginText();
+			/*		if(sym.label.length()>1) {
+						font = PDType1Font.SYMBOL;
+					}else {
+						font = PDType1Font.COURIER;
+					}*/
+			
+					//String result=  Jsoup.parse("&#x222b;").text();
+					String result="";
+					contentStream.setFont(font, 12);
+					contentStream.newLineAtOffset(offsetX+(sym.lowX), offsetY+(exp.expHeight-sym.highY));
+					//System.out.println("symbol -> "+sym.label+" - "+sym.symHeigh +" - "+sym.symWidth);
+					
+					result = this.generic_symbol_table.get(sym.label);
+					System.out.println("symbol -> "+sym.label+" - "+result+" - "+sym.symHeigh +" - "+sym.symWidth);
+					try {
+					contentStream.showText(result);
+					}catch(IllegalArgumentException iae) {
+						if(font==PDType1Font.SYMBOL) {
+							font = PDType1Font.COURIER;
+						}else if(font == PDType1Font.COURIER)font = PDType1Font.SYMBOL;
+						System.out.println(font);
+						contentStream.setFont(font, factor*(sym.symHeigh));
+						contentStream.showText(result);
+					}
+					
+				
+					contentStream.endText();
+					
+				}
+				contentStream.close();
+				//contentStream.drawString( "Hello World" );
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
+
+		
+
+			// Make sure that the content stream is closed:
+			
+
+			// Save the results and ensure that the document is properly closed:
+			try {
+				System.out.println(exp.expId);
+				document.save( this.destination+"/"+exp.expId+".pdf");
+				document.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			System.out.println("Done");
+			
+		}
+	}  
+	
+}
