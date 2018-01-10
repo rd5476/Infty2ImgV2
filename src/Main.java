@@ -38,7 +38,7 @@ public class Main {
 			//System.out.println(lbl);
 			WriteExpToPdf.sym2glyph.put(lbl, ci);
 		}
-		ReadLG rlg  = new ReadLG("SourceData", "Output") ;
+		ReadLG rlg  = new ReadLG(arg[0], arg[1]) ;
 		rlg.extractLGData();
 		
 		//WriteExpToPdf e2p = new WriteExpToPdf("Output");
@@ -47,7 +47,7 @@ public class Main {
 		
 		RenderImage ri = new RenderImage();
 		ri.allExpressions = rlg.expressions;
-		ri.dest = "Output";
+		ri.dest = arg[1];
 		ri.sym2glyph = WriteExpToPdf.sym2glyph;
 		System.out.println(WriteExpToPdf.ocr2unicode.size());
 		ri.ocr2unicode= WriteExpToPdf.ocr2unicode;

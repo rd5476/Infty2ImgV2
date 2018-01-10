@@ -116,7 +116,7 @@ static Map<String,ArrayList<String>> charData = new HashMap<>();
 						counter++;
 					}catch(IllegalArgumentException iae) {
 						iae.printStackTrace();
-						System.out.println("Kyu----------------------------------------------------");
+						
 //						if(font==PDType1Font.SYMBOL) {
 //							font = PDType1Font.COURIER;
 //						}else if(font == PDType1Font.COURIER) {

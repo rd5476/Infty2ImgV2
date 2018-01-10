@@ -81,7 +81,7 @@ public class RahulDrawGlyph extends drawGlyph{
 	  public void adjustCoord(){
 			
 	        GeneralPath newPath = new GeneralPath();
-	        System.out.println("All MinY "+minX+" MinX "+minY);
+	      
 	      
 	        for(int i=0;i<op.size();i++) {
 	            switch (op.get(i)) {

@@ -72,7 +72,7 @@ public class WriteExpToPdf {
 		}
 	}
 	static void init_generic_symbol_table() {
-	//	File gst = new File("src/generic_symbol_table.csv");
+	
 		File gst = new File("src/ocr2uni.csv");
 		FileReader fileReader = null;
 		try {
