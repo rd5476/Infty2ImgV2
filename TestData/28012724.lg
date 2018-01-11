@@ -1,0 +1,30 @@
+# IUD, 28012724
+#Exp 28012724 14_002.png
+#sym, 455459, 4, 1, 83, 22
+#sym, 455460, 22, 34, 62, 70
+#sym, 455461, 51, 72, 77, 88
+#sym, 455462, 3, 114, 61, 145
+#sym, 455463, 1, 158, 79, 181
+# [ OBJECTS ]
+# Primitive Nodes (N): ?
+#    Objects (O): 5
+O, 455459, LeftPar, 1.0, 2
+O, 455460, a, 1.0, 0
+O, 455461, comma, 1.0, 4
+O, 455462, b, 1.0, 1
+O, 455463, RightPar, 1.0, 3
+
+# [ RELATIONSHIPS ]
+# Primitive Edges (E): ? (? merge, ? relationship 
+#	Object Relationships (R): 4
+R, 455459, 455460, HORIZONTAL, 1.0
+R, 455460, 455461, PUNC, 1.0
+R, 455460, 455462, HORIZONTAL, 1.0
+R, 455462, 455463, HORIZONTAL, 1.0
+
+# [PRIMITAVES]
+#cc, 0, 22, 34, 61, 69
+#cc, 1, 3, 114, 60, 144
+#cc, 2, 4, 1, 82, 21
+#cc, 3, 1, 158, 78, 180
+#cc, 4, 51, 72, 76, 87

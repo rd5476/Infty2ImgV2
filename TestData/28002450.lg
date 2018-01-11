@@ -1,0 +1,14 @@
+# IUD, 28002450
+#Exp 28002450 01_019.png
+#sym, 61455, 1, 1, 40, 44
+# [ OBJECTS ]
+# Primitive Nodes (N): ?
+#    Objects (O): 1
+O, 61455, x, 1.0, 0
+
+# [ RELATIONSHIPS ]
+# Primitive Edges (E): ? (? merge, ? relationship 
+#	Object Relationships (R): 0
+
+# [PRIMITAVES]
+#cc, 0, 1, 1, 39, 43

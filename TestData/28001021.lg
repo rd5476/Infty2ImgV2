@@ -1,0 +1,27 @@
+# IUD, 28001021
+#Exp 28001021 00_019.png
+#sym, 20848, 17, 1, 55, 48
+#sym, 20849, 28, 58, 66, 76
+#sym, 20850, 1, 135, 65, 186
+#sym, 20851, 16, 238, 54, 284
+# [ OBJECTS ]
+# Primitive Nodes (N): ?
+#    Objects (O): 4
+O, 20848, alpha, 1.0, 2
+O, 20849, one, 1.0, 3
+O, 20850, geq, 1.0, 0, 1
+O, 20851, alpha, 1.0, 4
+
+# [ RELATIONSHIPS ]
+# Primitive Edges (E): ? (? merge, ? relationship 
+#	Object Relationships (R): 3
+R, 20848, 20849, RSUB, 1.0
+R, 20848, 20850, HORIZONTAL, 1.0
+R, 20850, 20851, HORIZONTAL, 1.0
+
+# [PRIMITAVES]
+#cc, 0, 1, 135, 47, 185
+#cc, 1, 61, 135, 64, 185
+#cc, 2, 17, 1, 54, 47
+#cc, 3, 28, 58, 65, 75
+#cc, 4, 16, 238, 53, 283

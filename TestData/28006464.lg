@@ -1,0 +1,42 @@
+# IUD, 28006464
+#Exp 28006464 06_009.png
+#sym, 222199, 4, 1, 60, 34
+#sym, 222200, 2, 43, 77, 62
+#sym, 222201, 22, 68, 78, 115
+#sym, 222202, 1, 121, 77, 139
+#sym, 222203, 22, 167, 62, 219
+#sym, 222204, 4, 250, 79, 284
+#sym, 222205, 24, 294, 79, 342
+#sym, 222206, 4, 355, 78, 388
+# [ OBJECTS ]
+# Primitive Nodes (N): ?
+#    Objects (O): 8
+O, 222199, I, 1.0, 5
+O, 222200, LeftPar, 1.0, 4
+O, 222201, varphi, 1.0, 1
+O, 222202, RightPar, 1.0, 3
+O, 222203, cup, 1.0, 7
+O, 222204, langle, 1.0, 6
+O, 222205, varphi, 1.0, 0
+O, 222206, rangle, 1.0, 2
+
+# [ RELATIONSHIPS ]
+# Primitive Edges (E): ? (? merge, ? relationship 
+#	Object Relationships (R): 7
+R, 222199, 222200, HORIZONTAL, 1.0
+R, 222200, 222201, HORIZONTAL, 1.0
+R, 222201, 222202, HORIZONTAL, 1.0
+R, 222202, 222203, HORIZONTAL, 1.0
+R, 222203, 222204, HORIZONTAL, 1.0
+R, 222204, 222205, HORIZONTAL, 1.0
+R, 222205, 222206, HORIZONTAL, 1.0
+
+# [PRIMITAVES]
+#cc, 0, 24, 294, 78, 341
+#cc, 1, 22, 68, 77, 114
+#cc, 2, 4, 355, 77, 387
+#cc, 3, 1, 121, 76, 138
+#cc, 4, 2, 43, 76, 61
+#cc, 5, 4, 1, 59, 33
+#cc, 6, 4, 250, 78, 283
+#cc, 7, 22, 167, 61, 218

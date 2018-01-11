@@ -1,3 +1,4 @@
+import java.awt.BasicStroke;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.GeneralPath;
@@ -50,18 +51,36 @@ public class RenderImage {
 			// List of all components
 			ArrayList<DrawSymbol> expressionComponents = new ArrayList<>();
 			for(Symbol s : exp.objects){
-				
+				ArrayList< String> symbols =  WriteExpToPdf.multiple_symbols.get(s.label);
+				if(symbols==null)
+					symbols =  WriteExpToPdf.multiple_symbols.get(s.label.toLowerCase());
 				//Get unicode for the label read from .lg file
-				String charId =  WriteExpToPdf.generic_symbol_table.get(s.label);
-				if(charId==null) {
-					 charId =  WriteExpToPdf.generic_symbol_table.get(s.label.toLowerCase());
+				String charId="";
+				characterInfo cInfo = null;
+				if(symbols==null) {
+				//	String key1 ="#x"+Integer.toHexString(charId.charAt(0) | 0x10000).substring(1) ;
+					if(s.label.equals("fractionalLine")) {
+						symbols = new ArrayList<>();
+					}else {
+					System.out.println("No symbol matched Exception : "+s.label+" - ");//+charId+" - "+key1);
+					continue;
+					}
 				}
-				charId=Jsoup.parse("&"+charId).text();
-		
-				// Get character info based 
-				characterInfo cInfo = sym2glyph.get(charId);
+				for(String cId: symbols) {
+					charId = cId;
+					//charId =  WriteExpToPdf.generic_symbol_table.get(s.label);
+	//				if(charId==null) {
+	//					 charId =  WriteExpToPdf.generic_symbol_table.get(s.label.toLowerCase());
+	//				}
+					charId=Jsoup.parse("&"+charId).text();
+				//	String key ="#x"+Integer.toHexString(s.label.charAt(0) | 0x10000).substring(1) ;
+					// Get character info based 
+			//		System.out.println("Working : "+s.label+" "+charId);
+					cInfo = sym2glyph.get(charId);
+					if(cInfo!=null)break;
+				}
 				if(cInfo!=null) {
-				
+					//for(String cc:symbols) System.out.println("Exception list "+cc);
 					drawGlyph dg = cInfo.glyph;
 				
 				
@@ -81,7 +100,13 @@ public class RenderImage {
 				
 					//this.scaleGlyph(cInfo, s);
 				}else {
-					System.out.println(s.label);
+					if(s.label.equals("fractionalLine")) {
+						graphic.setStroke(new BasicStroke(10));
+			        	graphic.drawLine((int)(s.lowX),(int)(expHeight-s.highY),(int)(s.highX),(int)(expHeight-s.highY));
+					}
+				//	for(String cc:symbols) System.out.println("Exception list "+cc);
+				//	String key1 ="#x"+Integer.toHexString(charId.charAt(0) | 0x10000).substring(1) ;
+			//		System.out.println("Exception : "+s.label+" - "+charId+" - "+key1);
 				}
 				
 			

@@ -1,0 +1,22 @@
+# IUD, 28002802
+#Exp 28002802 01_025.png
+#sym, 67667, 1, 1, 78, 54
+#sym, 67668, 4, 68, 78, 74
+#sym, 67669, 44, 82, 80, 133
+# [ OBJECTS ]
+# Primitive Nodes (N): ?
+#    Objects (O): 3
+O, 67667, f, 1.0, 1
+O, 67668, vert, 1.0, 2
+O, 67669, M, 1.0, 0
+
+# [ RELATIONSHIPS ]
+# Primitive Edges (E): ? (? merge, ? relationship 
+#	Object Relationships (R): 2
+R, 67667, 67668, HORIZONTAL, 1.0
+R, 67668, 67669, RSUB, 1.0
+
+# [PRIMITAVES]
+#cc, 0, 44, 82, 79, 132
+#cc, 1, 1, 1, 77, 53
+#cc, 2, 4, 68, 77, 73

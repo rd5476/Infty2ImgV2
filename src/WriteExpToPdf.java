@@ -24,6 +24,7 @@ import org.omg.IOP.Encoding;
 public class WriteExpToPdf {
 	static HashMap<String, characterInfo> sym2glyph = new HashMap<>();
 	static Map<String,String> generic_symbol_table =  new HashMap<>();
+	static Map<String,ArrayList<String>> multiple_symbols = new HashMap<>();
 	static Map<String,String> ocr2unicode = new HashMap<>();
 	static Map<String,String> unicode2ocr = new HashMap<>();
 	static Map<String,String> english2digit = new HashMap<>();
@@ -62,7 +63,7 @@ public class WriteExpToPdf {
 			while ((line = br.readLine()) != null) {
 				String [] tokens = line.split(",");
 				if(tokens.length>1) {
-				generic_symbol_table.put(tokens[0], tokens[1]);
+					generic_symbol_table.put(tokens[0], tokens[1]);
 				
 				}
 			}
@@ -87,7 +88,15 @@ public class WriteExpToPdf {
 				String [] tokens = line.split(",");
 				
 				if(tokens.length>1) {
-					
+				if(!multiple_symbols.containsKey(tokens[0])) {
+					ArrayList<String> sym= new ArrayList<>(); 
+					sym.add(tokens[1]);
+					multiple_symbols.put(tokens[0], sym);
+				}else	{
+					ArrayList<String> sym=multiple_symbols.get(tokens[0]);
+					sym.add(tokens[1]);
+					multiple_symbols.put(tokens[0], sym);
+				}
 				generic_symbol_table.put(tokens[0], tokens[1]);
 				ocr2unicode.put(tokens[1], tokens[0]);
 				}

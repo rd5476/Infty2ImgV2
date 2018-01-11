@@ -1,0 +1,42 @@
+# IUD, 28002063
+#Exp 28002063 01_014.png
+#sym, 73019, 8, 1, 84, 24
+#sym, 73020, 12, 38, 70, 92
+#sym, 73021, 29, 101, 69, 155
+#sym, 73022, 12, 169, 68, 229
+#sym, 73023, 1, 193, 5, 229
+#sym, 73024, 9, 240, 85, 263
+#sym, 73025, 27, 287, 67, 328
+#sym, 73026, 10, 352, 68, 407
+# [ OBJECTS ]
+# Primitive Nodes (N): ?
+#    Objects (O): 8
+O, 73019, LeftPar, 1.0, 5
+O, 73020, V, 1.0, 4
+O, 73021, cap, 1.0, 6
+O, 73022, D, 1.0, 0
+O, 73023, overline, 1.0, 1
+O, 73024, RightPar, 1.0, 7
+O, 73025, times, 1.0, 3
+O, 73026, Omega, 1.0, 2
+
+# [ RELATIONSHIPS ]
+# Primitive Edges (E): ? (? merge, ? relationship 
+#	Object Relationships (R): 7
+R, 73019, 73020, HORIZONTAL, 1.0
+R, 73020, 73021, HORIZONTAL, 1.0
+R, 73021, 73022, HORIZONTAL, 1.0
+R, 73022, 73023, UPPER, 1.0
+R, 73022, 73024, HORIZONTAL, 1.0
+R, 73024, 73025, HORIZONTAL, 1.0
+R, 73025, 73026, HORIZONTAL, 1.0
+
+# [PRIMITAVES]
+#cc, 0, 12, 169, 67, 228
+#cc, 1, 1, 193, 4, 228
+#cc, 2, 10, 352, 67, 406
+#cc, 3, 27, 287, 66, 327
+#cc, 4, 12, 38, 69, 91
+#cc, 5, 8, 1, 83, 23
+#cc, 6, 29, 101, 68, 154
+#cc, 7, 9, 240, 84, 262

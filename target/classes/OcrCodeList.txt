@@ -583,6 +583,7 @@
 0x18b3,OtherSymbols,fbox
 0x18b4,OtherSymbols,fcircle
 0x18b6,OtherSymbols,hyphen
+0x2010,OtherSymbols,hyphen
 0x18b7,OtherSymbols,longHyphen
 0x185f,OtherSymbols,lowline
 0x18bb,OtherSymbols,hbar

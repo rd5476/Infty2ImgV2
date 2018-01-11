@@ -88,7 +88,8 @@ static Map<String,ArrayList<String>> charData = new HashMap<>();
 			//contentStream.newLineAtOffset(100,1000);
 			int offset =0;
 			int offsety =0; 
-			font = PDType0Font.load(document, new File("src/times.ttf"));
+			font = PDType0Font.load(document, new File("src/ArialUnicodeMS - Arial Unicode MS - Regular.ttf"));
+			//font = PDType0Font.load(document, new File("src/times.ttf"));
 			while ((line = br.readLine()) != null) {
 				
 				String [] tokens = line.split(",");

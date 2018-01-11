@@ -34,9 +34,14 @@ public class Main {
 		
 		for(Integer k :allSym.pageCharacters.keySet()) {
 			characterInfo ci = allSym.pageCharacters.get(k);
+			
 			String lbl = ci.value;
+			//String unicd =
+			String key ="#x"+Integer.toHexString(lbl.charAt(0) | 0x10000).substring(1) ;
+			System.out.println(lbl+" - "+key);
 			//System.out.println(lbl);
 			WriteExpToPdf.sym2glyph.put(lbl, ci);
+			//WriteExpToPdf.sym2glyph.put(key, ci);
 		}
 		ReadLG rlg  = new ReadLG(arg[0], arg[1]) ;
 		rlg.extractLGData();
@@ -49,7 +54,7 @@ public class Main {
 		ri.allExpressions = rlg.expressions;
 		ri.dest = arg[1];
 		ri.sym2glyph = WriteExpToPdf.sym2glyph;
-		System.out.println(WriteExpToPdf.ocr2unicode.size());
+		System.out.println(WriteExpToPdf.sym2glyph.size());
 		ri.ocr2unicode= WriteExpToPdf.ocr2unicode;
 		ri.renderImages();
 		
