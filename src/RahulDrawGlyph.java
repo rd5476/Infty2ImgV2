@@ -78,6 +78,7 @@ public class RahulDrawGlyph extends drawGlyph{
 
     }
 */
+	  
 	  public void adjustCoord(){
 			
 	        GeneralPath newPath = new GeneralPath();
@@ -125,4 +126,52 @@ public class RahulDrawGlyph extends drawGlyph{
 
 	    }
 
+
+	 /* public void adjustCoord(){
+			
+	        GeneralPath newPath = new GeneralPath();
+	      
+	      
+	        for(int i=0;i<op.size();i++) {
+	            switch (op.get(i)) {
+	                case PathIterator.SEG_CLOSE:
+	                    newPath.closePath();
+	                    break;
+	                case PathIterator.SEG_CUBICTO:
+	                    newPath.curveTo((allx1.get(i)-minX)*fontFactorX+offset,
+	                            (ally1.get(i)-minY)*fontFactorY+offsetY,
+	                            (allx2.get(i)-minX)*fontFactorX+offset,
+	                            (ally2.get(i)-minY)*fontFactorY+offsetY,
+	                            (allx3.get(i)-minX)*fontFactorX+offset,
+	                            (ally3.get(i)-minY)*fontFactorY+offsetY);
+	                    break;
+
+	                case PathIterator.SEG_LINETO:
+	                    newPath.lineTo((allx1.get(i)-minX)*fontFactorX+offset,
+	                            ((ally1.get(i)-minY))*fontFactorY+offsetY);
+	                    break;
+
+	                case PathIterator.SEG_MOVETO:
+	                    newPath.moveTo((allx1.get(i)-minX)*fontFactorX+offset,
+	                    		((ally1.get(i)-minY))*fontFactorY+offsetY);
+	                    break;
+
+	                case PathIterator.SEG_QUADTO:
+	                    newPath.quadTo((allx1.get(i)-minX)*fontFactorX+offset,
+	                            ((ally1.get(i)-minY))*fontFactorY+offsetY,
+	                            (allx2.get(i)-minX)*fontFactorX+offset,
+	                            (ally2.get(i)-minY)*fontFactorY+offsetY);
+	                    break;
+
+	              
+	            }
+
+	        }
+	       drawGlyph temp = new drawGlyph(newPath,ch,unicode,fontSize,EmSqaure);
+	        temp.paint(graphics);
+
+
+
+	    }
+*/
 }

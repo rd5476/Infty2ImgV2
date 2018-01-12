@@ -41,7 +41,7 @@ public class RenderImage {
 			expHeight = exp.expHeight;
 		
 			//Create Image for each expression
-			BufferedImage image = new BufferedImage(expWidth+20,expHeight, BufferedImage.TYPE_INT_BGR);
+			BufferedImage image = new BufferedImage(expWidth+1,expHeight, BufferedImage.TYPE_INT_BGR);
 			Graphics2D graphic = image.createGraphics();
 			
 			
@@ -89,9 +89,15 @@ public class RenderImage {
 					ds.height = s.symHeigh;///cInfo.boundingBox.height;
 					ds.width = s.symWidth;///cInfo.boundingBox.width;
 					Rectangle2D r2d = cInfo.glyph.glyphPath.getBounds2D();
+					double wd =ds.obj.maxX-ds.obj.minX;
+					double ht = ds.obj.maxY-ds.obj.minY;
+					//Correct version
 					ds.obj.fontFactor = s.symHeigh/r2d.getHeight();//cInfo.boundingBox.width/s.symWidth;
-					//	ds.obj.fontFactorX =s.symWidth/r2d.getHeight();//s.symWidth/r2d.getWidth();
-					//	ds.obj.fontFactorY = s.symWidth/r2d.getWidth();//s.symWidth/r2d.getHeight();
+					
+//					System.out.println("Scaling factors : "+r2d.getHeight()+" - "+ds.height+" "+s.symHeigh);
+//					ds.obj.fontFactor = s.symHeigh/ds.height;
+//						ds.obj.fontFactorX =s.symWidth/wd; //r2d.getWidth();//s.symWidth/r2d.getWidth();
+//						ds.obj.fontFactorY = s.symHeigh/ht;//r2d.getHeight();//s.symWidth/r2d.getHeight();
 					expressionComponents.add(ds);
 					//	ds.obj.draw(type.Normal, graphic);
 				
@@ -106,7 +112,7 @@ public class RenderImage {
 					}
 				//	for(String cc:symbols) System.out.println("Exception list "+cc);
 				//	String key1 ="#x"+Integer.toHexString(charId.charAt(0) | 0x10000).substring(1) ;
-			//		System.out.println("Exception : "+s.label+" - "+charId+" - "+key1);
+					System.out.println("Exception : "+s.label+" - ");
 				}
 				
 			
