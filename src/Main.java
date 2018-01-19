@@ -13,7 +13,9 @@ import org.jsoup.Jsoup;
 
 public class Main {
 
-	
+/*	public static void main(String [] arg) throws InvalidPasswordException, IOException {
+		GenerateAllPixellSizes.init_generic_symbol_table(12);
+	}*/
 	public static void main(String [] arg) throws InvalidPasswordException, IOException {
 		
 		GenerateAllPixellSizes.init_generic_symbol_table(12);
@@ -21,7 +23,7 @@ public class Main {
 //		
 		
 		//////////////////////////////////////////////////////////////////////////////////////////
-		File file = new File("AllCharacterFont12.pdf");
+		File file = new File("Arial-Unicode-Italic.pdf");
         FileInputStream inpStream = new FileInputStream(file);
         PDDocument documnet = PDDocument.load(inpStream);
 

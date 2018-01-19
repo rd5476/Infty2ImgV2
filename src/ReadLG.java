@@ -80,22 +80,28 @@ public ReadLG(String source, String dest) {
 						
 					
 						Symbol temp = new Symbol();
-						temp.id =( elements[1]);
-						temp.lowY = Integer.valueOf(elements[2]);
-						if(temp.lowY<minExpY) minExpY = temp.lowY;
-						temp.lowX =Integer.valueOf( elements[3]);
-						if(temp.lowX<minExpX) minExpX = temp.lowX;
-						temp.highY = Integer.valueOf(elements[4]);
-						if(temp.highY>maxExpY) maxExpY = temp.highY;
-						temp.highX = Integer.valueOf(elements[5]);
-						if(temp.highX>maxExpX) maxExpX = temp.highX;
-						exp.objects.add(temp);
-					
+						try {
+							temp.id =( elements[1]);
+							temp.lowY = Integer.valueOf(elements[2]);
+							if(temp.lowY<minExpY) minExpY = temp.lowY;
+							temp.lowX =Integer.valueOf( elements[3]);
+							if(temp.lowX<minExpX) minExpX = temp.lowX;
+							temp.highY = Integer.valueOf(elements[4]);
+							if(temp.highY>maxExpY) maxExpY = temp.highY;
+							temp.highX = Integer.valueOf(elements[5]);
+							if(temp.highX>maxExpX) maxExpX = temp.highX;
+							exp.objects.add(temp);
+						}catch(Exception e){
+							System.out.println("Exception - "+line);
+							e.printStackTrace();
+						}
 						
 					}else if (elements[0].equals("O")) {
 						assert(elements[1].equals(exp.objects.get(counter).id));
+						try {
 						exp.objects.get(counter).updateDim();
-						exp.objects.get(counter++).label =elements[2]; 
+						exp.objects.get(counter++).label =elements[2];
+						}catch(Exception e) {}
 					}
 					/*else if (elements[0].equals("R")) {
 						if(flag==0) {

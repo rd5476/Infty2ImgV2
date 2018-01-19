@@ -64,7 +64,7 @@ static Map<String,ArrayList<String>> charData = new HashMap<>();
 	   	fontsize = fs;
 	//   Map<String,String> generic_symbol_table = new HashMap<>();
 	//	File gst = new File("src/generic_symbol_table.csv");
-		
+	   	String fontname = "Arial-Unicode-Italic";
 	   	File gst = new File("src/ocr2uni.csv");
 		FileReader fileReader = null;
 		PDDocument document = new PDDocument();
@@ -88,7 +88,8 @@ static Map<String,ArrayList<String>> charData = new HashMap<>();
 			//contentStream.newLineAtOffset(100,1000);
 			int offset =0;
 			int offsety =0; 
-			font = PDType0Font.load(document, new File("src/ArialUnicodeMS - Arial Unicode MS - Regular.ttf"));
+			
+			font = PDType0Font.load(document, new File("src/"+fontname+".ttf"));
 		//	font = PDType0Font.load(document, new File("src/TIMESS__.ttf"));
 			//font = PDType0Font.load(document, new File("src/times.ttf"));
 			while ((line = br.readLine()) != null) {
@@ -117,6 +118,7 @@ static Map<String,ArrayList<String>> charData = new HashMap<>();
 						contentStream.showText(result);
 						counter++;
 					}catch(IllegalArgumentException iae) {
+						System.out.println(tokens[0]);
 						iae.printStackTrace();
 						
 //						if(font==PDType1Font.SYMBOL) {
@@ -165,7 +167,7 @@ static Map<String,ArrayList<String>> charData = new HashMap<>();
 		}
 		try {
 			
-			document.save( "AllCharacterFont"+fontsize+".pdf");
+			document.save( fontname+".pdf");
 			document.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

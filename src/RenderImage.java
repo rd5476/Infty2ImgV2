@@ -41,7 +41,7 @@ public class RenderImage {
 			expHeight = exp.expHeight;
 		
 			//Create Image for each expression
-			BufferedImage image = new BufferedImage(expWidth+1,expHeight, BufferedImage.TYPE_INT_BGR);
+			BufferedImage image = new BufferedImage(expWidth+10,expHeight, BufferedImage.TYPE_INT_BGR);
 			Graphics2D graphic = image.createGraphics();
 			
 			
