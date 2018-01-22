@@ -60,11 +60,11 @@ static Map<String,ArrayList<String>> charData = new HashMap<>();
    
    
    
-   static void init_generic_symbol_table(int fs) {
+   static void init_generic_symbol_table(int fs,String fontFileName) {
 	   	fontsize = fs;
 	//   Map<String,String> generic_symbol_table = new HashMap<>();
 	//	File gst = new File("src/generic_symbol_table.csv");
-	   	String fontname = "Arial-Unicode-Italic";
+	   	//String fontname = "Arial-Unicode-Italic";
 	   	File gst = new File("src/ocr2uni.csv");
 		FileReader fileReader = null;
 		PDDocument document = new PDDocument();
@@ -89,7 +89,7 @@ static Map<String,ArrayList<String>> charData = new HashMap<>();
 			int offset =0;
 			int offsety =0; 
 			
-			font = PDType0Font.load(document, new File("src/"+fontname+".ttf"));
+			font = PDType0Font.load(document, new File("src/"+fontFileName+".ttf"));
 		//	font = PDType0Font.load(document, new File("src/TIMESS__.ttf"));
 			//font = PDType0Font.load(document, new File("src/times.ttf"));
 			while ((line = br.readLine()) != null) {
@@ -167,7 +167,7 @@ static Map<String,ArrayList<String>> charData = new HashMap<>();
 		}
 		try {
 			
-			document.save( fontname+".pdf");
+			document.save( fontFileName+".pdf");
 			document.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

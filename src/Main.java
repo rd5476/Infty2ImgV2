@@ -18,12 +18,14 @@ public class Main {
 	}*/
 	public static void main(String [] arg) throws InvalidPasswordException, IOException {
 		
-		GenerateAllPixellSizes.init_generic_symbol_table(12);
-//		
-//		
-		
+		String fontFile[] = arg[2].split("\\\\");
+		String fontFileName = fontFile[fontFile.length-1].split("\\.")[0];
+		GenerateAllPixellSizes.init_generic_symbol_table(12,fontFileName);
+//		 
+		System.out.println(fontFileName);
 		//////////////////////////////////////////////////////////////////////////////////////////
-		File file = new File("Arial-Unicode-Italic.pdf");
+		
+		File file = new File(fontFileName+".pdf");
         FileInputStream inpStream = new FileInputStream(file);
         PDDocument documnet = PDDocument.load(inpStream);
 
